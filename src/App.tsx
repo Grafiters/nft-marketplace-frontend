@@ -9,11 +9,13 @@ const App: React.FC = () => {
   return (
     <Router>
       <Navbar />
-      <Routes>
-            {routes.map((route) => (
+      <div className="content">
+        <Routes>
+          {routes.map((route) => (
             <Route key={route.key} path={route.path} element={React.createElement(route.component)} />
-        ))}
+          ))}
         </Routes>
+      </div>
     </Router>
   );
 };

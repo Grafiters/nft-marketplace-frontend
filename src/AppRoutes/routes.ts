@@ -4,6 +4,7 @@ import { CollectionCreatorPage, CollectionPage } from "../page";
 import NftItemCreate from "../page/users/nft/create";
 import NftPage from "../page/users/nft";
 import { HomePage } from "./pageComponent";
+import ComponentPage from "../page/component";
 
 const routes: AppRoutes[] = [
     {
@@ -12,12 +13,12 @@ const routes: AppRoutes[] = [
 		exact: true,
 		key: 'HOME_PAGE',
 	},
-    // {
-	// 	component: null,
-	// 	path: ROUTES.ABOUT,
-	// 	exact: true,
-	// 	key: 'ABOUT',
-	// },
+    {
+		component: ComponentPage,
+		path: ROUTES.COMPONENT_PAGE,
+		exact: true,
+		key: 'ABOUT',
+	},
     {
 		component: CollectionPage,
 		path: ROUTES.PROFILE,

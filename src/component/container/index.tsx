@@ -27,7 +27,7 @@ const Container: React.FC<ContainerProps> = ({
     };
   
     return (
-        <div className="container" style={containerStyle}>
+        <div className="custom-container" style={containerStyle}>
         {children}
       </div>
     );

@@ -1,12 +1,13 @@
 /* Navbar.module.css */
 .navbar {
     background-color: #333;
-    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-  }
+    width: 100% !important;
+    position: absolute !important;
+}
   
   .navbarContainer {
     display: flex;

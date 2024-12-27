@@ -28,7 +28,7 @@ const MyNavbar: React.FC = () => {
 
   return (
     <>
-    <Navbar expanded={expanded} bg="dark" variant="dark" expand="lg">
+    <Navbar expanded={expanded} bg="dark" variant="dark" expand="lg" fixed='top'>
       <Container>
         <Navbar.Brand as={Link} to="/">
           MyApp

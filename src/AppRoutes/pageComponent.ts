@@ -19,3 +19,7 @@ export const NftItemCreate = React.lazy(
 export const NftPage = React.lazy(
 	() => import('../page/users/nft')
 )
+
+export const ComponentPage = React.lazy(
+	() => import('../page/component')
+)

@@ -5,5 +5,6 @@ export const ROUTES = {
     COLLECTION: '/collection',
     CREATE_COLLECTION: '/collection/create',
     CREATE_NFT_COLLECTION: '/collection/nft/create',
-    NFT_COLLECTION: '/collection/nft/:collectionAddress'
+    NFT_COLLECTION: '/collection/nft/:collectionAddress',
+    COMPONENT_PAGE: '/component'
 }
