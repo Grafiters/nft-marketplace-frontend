@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
-import CFT from "../../../contract/nft1155/artifacts/contracts/CFT.sol/ChefToken.json";
+import CFT from "../../constant/abi/chefToken.json";
+import { MetaDatas, Result, ResultMany } from "./interface";
 
 const getSigner = async (): Promise<ethers.Signer | null> => {
     if (typeof window !== 'undefined' && window.ethereum) {

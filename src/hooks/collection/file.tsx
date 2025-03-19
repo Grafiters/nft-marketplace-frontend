@@ -13,17 +13,16 @@ const collectionFile = {
         if (!generate) {
             return true
         }
-        console.log(`generate => `, generate);
         return generate
     },
-    fetch: async (): Promise<Collections[] | []> => {
+    fetch: async (): Promise<Collections[]> => {
         try {
             const response = await fetchJson(paths, filename)
-            const colResponse: [Collections] = response
-            if (colResponse.length <= 0) {
-                return []
+            if (!Array.isArray(response) || response.length === 0) {
+                return [];
             }
-            return colResponse
+
+            return response as Collections[];
         } catch (error: any) {
             return error
         }

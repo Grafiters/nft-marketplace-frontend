@@ -32,7 +32,8 @@ const fetchJson = async(path: string, filename: string):  Promise<any> => {
       throw new Error('Network response was not ok');
     }
     
-    const result = await response.json()
+    const result = await response.json();
+
     return result.data
   } catch (error: any) {
     console.log(`generate => `, error.message);

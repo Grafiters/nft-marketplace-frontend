@@ -7,8 +7,6 @@ const requestBuilder = {
             const response = await axiosInstance.post(path, data, config)
             return response
         } catch (error) {
-            console.log(data);
-            console.log(path);
             console.log(`config`, JSON.stringify(config));
             console.log(`request error => `, error);
             throw error

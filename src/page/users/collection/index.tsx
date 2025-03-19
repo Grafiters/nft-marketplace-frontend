@@ -11,9 +11,11 @@ const CollectionPage: React.FC = () => {
   const [collections, setCollection] = useState<Collections[]>([])
   const [loading, setLoading] = useState<boolean>(true);
 
-  const handleFetchCollecionData = async(): Promise<Collections[] | []> => {
+  const handleFetchCollecionData = async(): Promise<Collections[]> => {
     try {
       const collection = await collectionFile.fetch()
+      console.log(!Array.isArray(collection));
+      
       setCollection(collection)
     } catch (error: any) {
       setCollection([])

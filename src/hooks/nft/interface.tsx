@@ -1,4 +1,4 @@
-interface MetaDatas {
+export interface MetaDatas {
     name: string;
     supply: number;
     description: string;
@@ -9,27 +9,27 @@ interface MetaDatas {
     statistic: Statistic[] | [];
 }
 
-interface Properties {
+export interface Properties {
     name: string;
     value: string
 }
 
-interface Statistic {
+export interface Statistic {
     name: string;
     value: string
 }
 
-interface Result {
+export interface Result {
     status: boolean;
     message: string;
 }
 
-interface ResultMany {
+export interface ResultMany {
     status: boolean;
     message: string[] | string | TokenData;
 }
 
-interface TokenData {
+export interface TokenData {
     tokenId: string[] | [];
     url: string[] | [];
 }

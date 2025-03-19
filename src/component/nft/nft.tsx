@@ -14,7 +14,6 @@ const NftTab: React.FC<NftProps> = ({ collectionAddress }) => {
 
   const handleNftFetching = async(): Promise<any> => {
     const nft = await nftContracts.data(address)
-    console.log(nft);
     setLoading(false)
     return nft
   }

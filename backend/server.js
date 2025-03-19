@@ -1,9 +1,11 @@
+import "dotenv/config";
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dbConnection from './helper/mongoose.js'
 const app_name = process.env.APP_NAME || "Ryudelta NFT Project";
 const env = process.env.ENV || "Development";
 
@@ -14,6 +16,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 5000;
 
+// dbConnection()
+
 // Middleware setup
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,12 +27,17 @@ app.get('/api/json-data', async (req, res) => {
 
   const filePath = path.join(__dirname, `public/${folderPath}/${filename}`);
 
+  console.log(!fs.existsSync(filePath));
+  
   try {
     if (!fs.existsSync(filePath)) {
       return res.status(200).json({ data: [] });
     }
 
     const data = fs.readFileSync(filePath, 'utf-8');
+    if (!data) {
+      return res.status(200).json({ data: [] });
+    }
     const toJson = JSON.parse(data);
 
     res.status(200).json({ data: toJson });
@@ -75,7 +84,7 @@ app.listen(PORT, '0.0.0.0', () => {
 });
 
 process.on("SIGTERM", () => {
-  server.close(() => {
+  app.close(() => {
     process.exit(0);
   });
 });

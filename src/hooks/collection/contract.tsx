@@ -1,5 +1,5 @@
-import { CFTCollection, Collections } from "./interface";
-import CFT from "../../../contract/nft1155/artifacts/contracts/CFT.sol/ChefToken.json";
+import { CFTCollection } from "./interface";
+import CFT from "../../constant/abi/chefToken.json";
 import { ethers } from "ethers";
 
 const getSigner = async (): Promise<ethers.Signer | null> => {
