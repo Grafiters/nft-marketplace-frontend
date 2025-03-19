@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+const app_name = process.env.APP_NAME || "Ryudelta NFT Project";
+const env = process.env.ENV || "Development";
 
 // Handle ES module paths correctly
 const __filename = fileURLToPath(import.meta.url);
@@ -62,5 +64,18 @@ app.post('/api/rewrite-json', async (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Backend server running on http://0.0.0.0:${PORT}`);
+  const data = new Date();
+  console.log("|--------------------------------------------");
+  console.log("| Server       : " + app_name);
+  console.log("| Environment  : " + env);
+  console.log("| Port         : " + PORT);
+  console.log("| Date         : " + data.toJSON().split("T").join(" "));
+  console.log("|--------------------------------------------");
+  console.log("| Waiting For Database Connection ");
+});
+
+process.on("SIGTERM", () => {
+  server.close(() => {
+    process.exit(0);
+  });
 });
