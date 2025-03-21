@@ -5,7 +5,8 @@ import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dbConnection from './helper/mongoose.js'
+import cookieSession from "cookie-session";
+import routes from "./router/router.js";
 const app_name = process.env.APP_NAME || "Ryudelta NFT Project";
 const env = process.env.ENV || "Development";
 
@@ -20,7 +21,15 @@ const PORT = 5000;
 
 // Middleware setup
 app.use(cors());
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [process.env.HASH_SECRET],
+    maxAge: 24 * 60 * 60 * 1000,
+  })
+);
 app.use(bodyParser.json());
+app.use('/api', routes);
 
 app.get('/api/json-data', async (req, res) => {
   const { path: folderPath, filename } = req.query;

@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { WalletConnection } from '../../hooks/wallet/interface';
 import useWallet from '../../hooks/wallet/wallet';
+import { userFetch } from '../../api/user/user';
 
 const MyNavbar: React.FC = () => {
   const walletConfig = useWallet();
@@ -10,8 +11,10 @@ const MyNavbar: React.FC = () => {
   const { walletAddress } = useWallet();
 
   const [expanded, setExpanded] = useState(false);
+  const [isWalletLog, setWalletLog] = useState(false)
   const [wallet, setWallet] = useState<WalletConnection>({address: null, message: '', signature: ''});
   const [showAlert, setShowAlert] = useState(false);
+  const [address, setAddress] = useState<string | null>();
 
   const handleToggle = () => {
     setExpanded(!expanded);
@@ -21,8 +24,21 @@ const MyNavbar: React.FC = () => {
     const wallet = await (await walletConfig).connectWallet();
     if (wallet) {
       setWallet(wallet);
+      setWalletLog(true)
+      
+      const fetch = await userFetch.auth({
+        signature: wallet.signature,
+        message: wallet.message
+      })
+
+      setAddress(wallet.address)
+      if (!fetch) {
+        setWallet({address: null, message: '', signature: ''})
+        setWalletLog(true)
+      }
     } else {
       setShowAlert(true);
+      setWalletLog(false)
     }
   };
 
@@ -49,9 +65,9 @@ const MyNavbar: React.FC = () => {
               Profile
             </Nav.Link>
           </Nav>
-          {walletAddress != null ? (
+          {address != null ? (
             <Button variant="secondary" disabled>
-              {walletAddress?.slice(0, 6)}...{walletAddress?.slice(-4)}
+              {address?.slice(0, 6)}...{address?.slice(-4)}
             </Button>
           ) : (
             <Button variant="primary" onClick={handleConnectWallet}>
